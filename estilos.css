@@ -90,7 +90,7 @@ h1 {
 
 #controls {
   position: fixed;
-  bottom: 300px; /* ⬅ Sube los botones más arriba del borde inferior */
+  bottom: 240px; /* ⬅ Sube los botones más arriba del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
