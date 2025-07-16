@@ -35,9 +35,9 @@ h1 {
 
 #game {
   position: relative;
-  width: 90%;
-  max-width: 800px;
-  height: 300px;
+  width: 70%;
+  max-width: 700px;
+  height: 280px;
   background: url('Piratas.jpg') no-repeat center center;
   background-size: cover;
   overflow: hidden;
@@ -90,7 +90,7 @@ h1 {
 
 #controls {
   position: fixed;
-  bottom: 80px; /* ⬅ Sube los botones más arriba del borde inferior */
+  bottom: 10px; /* ⬅ Sube los botones más arriba del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -189,5 +189,6 @@ button:hover {
   border-radius: 5px;
   z-index: 5;
 }
+
 
 
