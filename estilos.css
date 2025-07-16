@@ -19,9 +19,9 @@ h1 {
 
 #vida {
   width: 200px;
-  height: 20px;
+  height: 10px;
   border: 2px solid #333;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   background: white;
   position: relative;
 }
@@ -35,9 +35,9 @@ h1 {
 
 #game {
   position: relative;
-  width: 88%;
-  max-width: 808px;
-  height: 300px;
+  width: 90%;
+  max-width: 900px;
+  height: 278px;
   background: url('Piratas.jpg') no-repeat center center;
   background-size: cover;
   overflow: hidden;
@@ -90,7 +90,7 @@ h1 {
 
 #controls {
   position: fixed;
-  bottom: 7px; /* ⬅ Sube los botones más arriba del borde inferior */
+  bottom: 300px; /* ⬅ Sube los botones más arriba del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -189,6 +189,7 @@ button:hover {
   border-radius: 5px;
   z-index: 5;
 }
+
 
 
 
