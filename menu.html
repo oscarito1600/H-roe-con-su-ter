@@ -4,6 +4,50 @@
   <meta charset="UTF-8">
   <title>Menú del Juego</title>
   <style>
+@media (max-width: 768px) {
+  #imagen-derecha {
+    display: none; /* Oculta la imagen decorativa en móviles */
+  }
+
+  #personaje {
+    width: 150px;
+    top: 370px;
+  }
+
+  .boton {
+    position: static;
+    display: block;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 300px;
+    font-size: 18px;
+  }
+
+  #creditos,
+  #instrucciones,
+  #jugar {
+    position: static;
+    width: 80%;
+    margin: 15px auto;
+    text-align: center;
+  }
+
+  .ventana {
+    width: 90%;
+    padding: 20px;
+  }
+
+  #loader h1 {
+    font-size: 24px;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .progress-container {
+    width: 80%;
+  }
+}
+
     body {
       margin: 0;
       padding: 0;
@@ -143,7 +187,7 @@
       top: 410px;
       left: 50%;
       transform: translateX(-50%);
-      width: 150px;
+      width: 200px;
       height: auto;
     }
 
@@ -202,7 +246,7 @@
     <button class="boton" id="instrucciones" onclick="mostrarVentana('modalInstrucciones')">Instrucciones</button>
     <img id="imagen-derecha" src="mundo.png" alt="Decoración">
     <button class="boton" id="jugar" onclick="location.href='index.html'">Jugar</button>
-    <img id="personaje" src="enemy5.gif" alt="Personaje animado">
+    <img id="personaje" src="walk_left.gif" alt="Personaje animado">
   </div>
 
   <!-- Ventana Créditos -->
@@ -244,4 +288,5 @@
 
 </body>
 </html>
+
 
