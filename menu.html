@@ -267,6 +267,69 @@ body.menu-activo {
   }
 }
 
+.menu-contenido {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 60px;
+  flex-wrap: wrap;
+}
+
+.botones-izquierda {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.imagen-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#jugar {
+  margin-top: 20px;
+  position: static;
+  transform: none;
+}
+
+@media screen and (max-width: 600px) {
+  .menu-contenido {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+  }
+
+  .botones-izquierda {
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .imagen-contenedor {
+    width: 100%;
+    align-items: center;
+  }
+
+  #imagen-derecha {
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  #jugar {
+    width: 80%;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+
+  #personaje {
+    width: 120px;
+    margin-top: 20px;
+  }
+}
+
 
   </style>
 </head>
@@ -284,10 +347,14 @@ body.menu-activo {
   <!-- Contenido del menú -->
 <div id="menu">
   <div class="menu-contenido">
-    <button class="boton" id="creditos" onclick="mostrarVentana('modalCreditos')">Créditos</button>
-    <button class="boton" id="instrucciones" onclick="mostrarVentana('modalInstrucciones')">Instrucciones</button>
-    <button class="boton" id="jugar" onclick="location.href='index.html'">Jugar</button>
-    <img id="imagen-derecha" src="mundo.png" alt="Decoración">
+    <div class="botones-izquierda">
+      <button class="boton" id="creditos" onclick="mostrarVentana('modalCreditos')">Créditos</button>
+      <button class="boton" id="instrucciones" onclick="mostrarVentana('modalInstrucciones')">Instrucciones</button>
+    </div>
+    <div class="imagen-contenedor">
+      <img id="imagen-derecha" src="mundo.png" alt="Decoración">
+      <button class="boton" id="jugar" onclick="location.href='index.html'">Jugar</button>
+    </div>
     <img id="personaje" src="walk_left.gif" alt="Personaje animado">
   </div>
 </div>
@@ -332,6 +399,8 @@ body.menu-activo {
 
 </body>
 </html>
+
+
 
 
 
