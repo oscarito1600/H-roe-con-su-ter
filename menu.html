@@ -4,206 +4,287 @@
   <meta charset="UTF-8">
   <title>Menú del Juego</title>
   <style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background-size: cover;
+  }
+
+  body.menu-activo {
+    background: url('menu.png') no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .boton {
+    position: absolute;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .boton:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  /* Pantalla de carga */
+  #loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('fondo normal.png') no-repeat center center;
+    background-size: contain;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    flex-direction: column;
+  }
+
+  #loader h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: rgb(255, 0, 119);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  }
+
+  .progress-container {
+    width: 300px;
+    height: 25px;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #2c9b00;
+    animation: loadProgress 3s linear forwards;
+  }
+
+  @keyframes loadProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+
+  #creditos {
+    top: 100px;
+    left: 120px;
+    font-size: 22px;
+    padding: 15px 10px;
+    border-radius: 12px;
+    background-color: #ffffffda;
+    color: #000;
+    border: 2px solid #fff;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+  }
+
+  #creditos:hover {
+    transform: scale(1.1);
+    background-color: #ff9b06;
+  }
+
+  #instrucciones {
+    top: 288px;
+    left: 110px;
+    font-size: 22px;
+    padding: 15px 10px;
+    border-radius: 12px;
+    background-color: #ffffffda;
+    color: #000;
+    border: 2px solid #fff;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+  }
+
+  #instrucciones:hover {
+    transform: scale(1.1);
+    background-color: #ff9b06;
+  }
+
+  #imagen-derecha {
+    position: absolute;
+    top: 150px;
+    right: 150px;
+    width: 300px;
+    height: 400px;
+  }
+
+  #jugar {
+    top: calc(280px + 180px + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    padding: 10px 30px;
+    border-radius: 12px;
+    background-color: #ffffffda;
+    color: #000;
+    border: 2px solid #fff;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+  }
+
+  #jugar:hover {
+    transform: scale(1.1);
+    background-color: #28a745;
+    color: white;
+  }
+
+  #personaje {
+    position: absolute;
+    top: 410px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: auto;
+  }
+
+  #menu {
+    display: none;
+  }
+
+  .ventana {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 3px solid #28a745;
+    border-radius: 15px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    z-index: 2000;
+    text-align: center;
+  }
+
+  .ventana h2 {
+    margin-top: 0;
+  }
+
+  .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  #loader .contenido-loader {
+    margin-top: 280px;
+    text-align: center;
+  }
+
+  /* 🔧 ADAPTACIÓN A TELÉFONOS */
+  @media screen and (max-width: 600px) {
     body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      background-size: cover;
+      overflow: auto;
     }
 
-    /* Fondo del menú se aplica solo cuando ya está listo */
-    body.menu-activo {
-      background: url('menu.png') no-repeat center center fixed;
-      background-size: cover;
+    .menu-contenido {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding-top: 50px;
+      position: relative;
     }
 
     .boton {
-      position: absolute;
-      padding: 10px 20px;
-      background-color: rgba(255, 255, 255, 0.85);
-      border: none;
-      border-radius: 10px;
+      position: static !important;
+      width: 80%;
+      font-size: 16px;
+    }
+
+    #jugar, #creditos, #instrucciones {
+      position: static;
+      width: 80%;
       font-size: 18px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .boton:hover {
-      background-color: rgba(255, 255, 255, 1);
-    }
-
-    /* Pantalla de carga */
-    #loader {
-      position: fixed;
-      width: 70%;
-      height: 70%;
-      background: url('fondo normal.png') no-repeat center center;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      flex-direction: column;
-    }
-
-    #loader h1 {
-      font-size: 32px;
+      padding: 12px 20px;
       margin-bottom: 15px;
-      color: white;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-    }
-
-    .progress-container {
-      width: 300px;
-      height: 25px;
-      background-color: #fff;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background-color: #333;
-      animation: loadProgress 3s linear forwards;
-    }
-
-    @keyframes loadProgress {
-      from { width: 0%; }
-      to { width: 100%; }
-    }
-
-    #creditos {
-      top: 100px;
-      left: 120px;
-      font-size: 22px;
-      padding: 15px 10px;
-      border-radius: 12px;
-      background-color: #ffffffda;
-      color: #000;
-      border: 2px solid #fff;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
-    }
-
-    #creditos:hover {
-      transform: scale(1.1);
-      background-color: #ff9b06;
-    }
-
-    #instrucciones {
-      top: 288px;
-      left: 110px;
-      font-size: 22px;
-      padding: 15px 10px;
-      border-radius: 12px;
-      background-color: #ffffffda;
-      color: #000;
-      border: 2px solid #fff;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
-    }
-
-    #instrucciones:hover {
-      transform: scale(1.1);
-      background-color: #ff9b06;
     }
 
     #imagen-derecha {
-      position: absolute;
-      top: 150px;
-      right: 150px;
-      width: 300px;
-      height: 400px; 
-    }
-
-    #jugar {
-      top: calc(280px + 180px + 10px);
-      left: 970px;
-      font-size: 22px;
-      padding: 10px 30px;
-      border-radius: 12px;
-      background-color: #ffffffda;
-      color: #000;
-      border: 2px solid #fff;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
-    }
-
-    #jugar:hover {
-      transform: scale(1.1);
-      background-color: #28a745;
-      color: white;
+      position: static;
+      width: 200px;
+      height: auto;
+      margin: 20px auto 0;
+      display: block;
     }
 
     #personaje {
-      position: absolute;
-      top: 410px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: auto;
-    }
-
-    #menu {
-      display: none;
+      width: 120px;
+      position: static;
+      transform: none;
+      margin: 20px auto;
+      display: block;
     }
 
     .ventana {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #ffffff;
-      border: 3px solid #28a745;
-      border-radius: 15px;
-      padding: 30px;
-      width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      z-index: 2000;
-      text-align: center;
-    }
-
-    .ventana h2 {
-      margin-top: 0;
+      width: 90%;
+      padding: 20px;
     }
 
     .cerrar {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      cursor: pointer;
-      font-weight: bold;
+      top: 5px;
+      right: 10px;
     }
+
+    #loader .contenido-loader {
+      margin-top: 140px;
+    }
+
+    #loader h1 {
+      font-size: 20px;
+    }
+
+    .progress-container {
+      width: 80%;
+      height: 20px;
+    }
+  }
+
+
   </style>
 </head>
 <body class="cargando">
 
   <!-- Pantalla de carga -->
   <div id="loader">
+  <div class="contenido-loader">
     <h1>Cargando juego...</h1>
     <div class="progress-container">
       <div class="progress-bar"></div>
     </div>
   </div>
-
+</div>
   <!-- Contenido del menú -->
-  <div id="menu">
+<div id="menu">
+  <div class="menu-contenido">
     <button class="boton" id="creditos" onclick="mostrarVentana('modalCreditos')">Créditos</button>
     <button class="boton" id="instrucciones" onclick="mostrarVentana('modalInstrucciones')">Instrucciones</button>
-    <img id="imagen-derecha" src="mundo.png" alt="Decoración">
     <button class="boton" id="jugar" onclick="location.href='index.html'">Jugar</button>
+    <img id="imagen-derecha" src="mundo.png" alt="Decoración">
     <img id="personaje" src="walk_left.gif" alt="Personaje animado">
   </div>
+</div>
+
 
   <!-- Ventana Créditos -->
   <div class="ventana" id="modalCreditos">
@@ -244,6 +325,7 @@
 
 </body>
 </html>
+
 
 
 
