@@ -18,7 +18,6 @@ body.menu-activo {
 }
 
 .boton {
-  position: absolute;
   padding: 10px 20px;
   background-color: rgba(255, 255, 255, 0.85);
   border: none;
@@ -75,6 +74,7 @@ body.menu-activo {
   to { width: 100%; }
 }
 
+/* Botones centrados */
 #creditos, #instrucciones, #jugar {
   font-size: 22px;
   padding: 15px 10px;
@@ -84,56 +84,41 @@ body.menu-activo {
   border: 2px solid #fff;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
   transition: transform 0.2s ease;
-  position: absolute;
-}
-
-#creditos {
-  top: 60px;
-  left: 120px;
+  position: relative;
+  margin: 15px auto;
+  display: block;
+  width: 250px;
+  text-align: center;
 }
 
 #creditos:hover {
-  transform: scale(1.1);
   background-color: #ff9b06;
-}
-
-#instrucciones {
-  top: 200px;
-  left: 110px;
 }
 
 #instrucciones:hover {
-  transform: scale(1.1);
   background-color: #ff9b06;
 }
 
-#jugar {
-  top: calc(110px + 180px + 10px);
-  left: 70%;
-  transform: translateX(-50%);
-}
-
 #jugar:hover {
-  transform: scale(1.1);
   background-color: #28a745;
   color: white;
 }
 
-#imagen-derecha {
+/* Contenedor centrado y más abajo */
+#contenedor-botones {
   position: absolute;
-  top: 120px;
-  right: 150px;
-  width: 260px;
-  height: 300px;
+  top: 55%; /* Ajusta este valor para subir o bajar más */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Quitamos personaje y decoración */
+#imagen-derecha,
 #personaje {
-  position: absolute;
-  top: 210px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: auto;
+  display: none;
 }
 
 #menu {
@@ -196,18 +181,13 @@ body.menu-activo {
 </div>
   <!-- Contenido del menú -->
 <div id="menu">
-  <div class="menu-contenido">
-    <div class="botones-izquierda">
-      <button class="boton" id="creditos" onclick="mostrarVentana('modalCreditos')">Créditos</button>
-      <button class="boton" id="instrucciones" onclick="mostrarVentana('modalInstrucciones')">Instrucciones</button>
-    </div>
-    <div class="imagen-contenedor">
-      <img id="imagen-derecha" src="mundo.png" alt="Decoración">
-      <button class="boton" id="jugar" onclick="location.href='index.html'">Jugar</button>
-    </div>
-    <img id="personaje" src="walk_left.gif" alt="Personaje animado">
+  <div id="contenedor-botones">
+    <button class="boton" id="jugar" onclick="location.href='index.html'">Jugar</button>
+    <button class="boton" id="instrucciones" onclick="mostrarVentana('modalInstrucciones')">Instrucciones</button>
+    <button class="boton" id="creditos" onclick="mostrarVentana('modalCreditos')">Créditos</button>
   </div>
 </div>
+
 
 
   <!-- Ventana Créditos -->
@@ -249,6 +229,7 @@ body.menu-activo {
 
 </body>
 </html>
+
 
 
 
