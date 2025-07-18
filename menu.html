@@ -88,7 +88,7 @@ body.menu-activo {
 }
 
 #creditos {
-  top: 100px;
+  top: 60px;
   left: 120px;
 }
 
@@ -98,7 +98,7 @@ body.menu-activo {
 }
 
 #instrucciones {
-  top: 288px;
+  top: 200px;
   left: 110px;
 }
 
@@ -108,8 +108,8 @@ body.menu-activo {
 }
 
 #jugar {
-  top: calc(280px + 180px + 10px);
-  left: 50%;
+  top: calc(140px + 180px + 10px);
+  left: 70%;
   transform: translateX(-50%);
 }
 
@@ -123,13 +123,13 @@ body.menu-activo {
   position: absolute;
   top: 150px;
   right: 150px;
-  width: 300px;
-  height: 400px;
+  width: 260px;
+  height: 300px;
 }
 
 #personaje {
   position: absolute;
-  top: 410px;
+  top: 240px;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
@@ -177,145 +177,6 @@ body.menu-activo {
 #loader .contenido-loader {
   margin-top: 280px;
   text-align: center;
-}
-
-/* 🔧 ADAPTACIÓN A TELÉFONOS */
-@media screen and (max-width: 600px) {
-  body.menu-activo {
-    background: url('menu.png') no-repeat top center scroll;
-    background-size: contain;
-    background-position: top center;
-    background-attachment: scroll;
-  }
-
-  body {
-    overflow: auto;
-  }
-
-  .menu-contenido {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding-top: 50px;
-    position: relative;
-  }
-
-  .boton {
-    position: static !important;
-    width: 80%;
-    font-size: 16px;
-  }
-
-  #jugar, #creditos, #instrucciones {
-    position: static;
-    width: 80%;
-    font-size: 18px;
-    padding: 12px 20px;
-    margin-bottom: 15px;
-  }
-
-  #imagen-derecha {
-    position: static;
-    width: 200px;
-    height: auto;
-    margin: 20px auto 0;
-    display: block;
-  }
-
-  #personaje {
-    width: 120px;
-    position: static;
-    transform: none;
-    margin: 20px auto;
-    display: block;
-  }
-
-  .ventana {
-    width: 90%;
-    padding: 20px;
-  }
-
-  .cerrar {
-    top: 5px;
-    right: 10px;
-  }
-
-  #loader .contenido-loader {
-    margin-top: 140px;
-  }
-
-  #loader h1 {
-    font-size: 20px;
-  }
-
-  .progress-container {
-    width: 80%;
-    height: 20px;
-  }
-}
-
-.menu-contenido {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 30px 60px;
-  flex-wrap: wrap;
-}
-
-.botones-izquierda {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.imagen-contenedor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#jugar {
-  margin-top: 20px;
-  position: static;
-  transform: none;
-}
-
-@media screen and (max-width: 600px) {
-  .menu-contenido {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
-  }
-
-  .botones-izquierda {
-    width: 100%;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-
-  .imagen-contenedor {
-    width: 100%;
-    align-items: center;
-  }
-
-  #imagen-derecha {
-    width: 90%;
-    max-width: 300px;
-    height: auto;
-  }
-
-  #jugar {
-    width: 80%;
-    font-size: 18px;
-    margin-top: 15px;
-  }
-
-  #personaje {
-    width: 120px;
-    margin-top: 20px;
-  }
 }
 
 
@@ -388,6 +249,8 @@ body.menu-activo {
 
 </body>
 </html>
+
+
 
 
 
