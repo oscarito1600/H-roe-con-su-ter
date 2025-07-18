@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Menú del Juego</title>
   <style>
- body {
+body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -13,7 +13,7 @@
 }
 
 body.menu-activo {
-  background: url('') no-repeat center center fixed;
+  background: url('menu.png') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -75,9 +75,7 @@ body.menu-activo {
   to { width: 100%; }
 }
 
-#creditos {
-  top: 100px;
-  left: 120px;
+#creditos, #instrucciones, #jugar {
   font-size: 22px;
   padding: 15px 10px;
   border-radius: 12px;
@@ -86,6 +84,12 @@ body.menu-activo {
   border: 2px solid #fff;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
   transition: transform 0.2s ease;
+  position: absolute;
+}
+
+#creditos {
+  top: 100px;
+  left: 120px;
 }
 
 #creditos:hover {
@@ -96,19 +100,23 @@ body.menu-activo {
 #instrucciones {
   top: 288px;
   left: 110px;
-  font-size: 22px;
-  padding: 15px 10px;
-  border-radius: 12px;
-  background-color: #ffffffda;
-  color: #000;
-  border: 2px solid #fff;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease;
 }
 
 #instrucciones:hover {
   transform: scale(1.1);
   background-color: #ff9b06;
+}
+
+#jugar {
+  top: calc(280px + 180px + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#jugar:hover {
+  transform: scale(1.1);
+  background-color: #28a745;
+  color: white;
 }
 
 #imagen-derecha {
@@ -117,26 +125,6 @@ body.menu-activo {
   right: 150px;
   width: 300px;
   height: 400px;
-}
-
-#jugar {
-  top: calc(280px + 180px + 10px);
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 22px;
-  padding: 10px 30px;
-  border-radius: 12px;
-  background-color: #ffffffda;
-  color: #000;
-  border: 2px solid #fff;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease;
-}
-
-#jugar:hover {
-  transform: scale(1.1);
-  background-color: #28a745;
-  color: white;
 }
 
 #personaje {
@@ -194,7 +182,7 @@ body.menu-activo {
 /* 🔧 ADAPTACIÓN A TELÉFONOS */
 @media screen and (max-width: 600px) {
   body.menu-activo {
-    background: url('Menu (2).png') no-repeat top center scroll;
+    background: url('menu.pngg') no-repeat top center scroll;
     background-size: contain;
     background-position: top center;
     background-attachment: scroll;
@@ -329,6 +317,7 @@ body.menu-activo {
     margin-top: 20px;
   }
 }
+
 
 
   </style>
