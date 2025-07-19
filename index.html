@@ -8,10 +8,11 @@
 </head>
 <body>
 
-  <div id="contador">Enemigos derrotados: <span id="enemigosTexto">0</span></div>
 
-  <div id="vida">
-    <div id="vidaBarra"></div>
+ <div id="game">
+  <div id="hud">
+    <div id="contador">Enemigos derrotados: <span id="enemigosTexto">0</span></div>
+    <div id="vida"><div id="vidaBarra"></div></div>
   </div>
 
   <!-- ✅ SOLO UN GAME -->
@@ -26,12 +27,21 @@
   </div>
 
   <!-- ✅ Controles fuera de #game -->
-  <div id="controls">
-    <button id="btnLeft">← Izquierda</button>
-    <button onclick="jump()">↑ Saltar</button>
-    <button onclick="slashAttack()">🗡️ Espada</button>
-    <button id="btnRight">→ Derecha</button>
-  </div>
+<div id="controls">
+  <button id="btnLeft">
+    <img src="izquierda.png" alt="" width="30">
+  </button>
+  <button onclick="jump()">
+    <img src="Arriba.png" alt="" width="30">
+  </button>
+  <button onclick="slashAttack()">
+    <img src="ataque.png" alt="" width="50">
+  </button>
+  <button id="btnRight">
+    <img src="Derecha.png" alt="" width="30">
+  </button>
+</div>
+
 
   <!-- 🎵 Audios -->
   <audio id="bgMusic" src="musica.mp3" loop></audio>
@@ -55,6 +65,7 @@
 
 </body>
 </html>
+
 
 
 
