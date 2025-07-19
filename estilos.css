@@ -104,7 +104,7 @@ h1 {
 
 
 #controls button {
-  font-size: 18px;
+  font-size: 7px;
   padding: 8px 10px;
   border-radius: 7px;
   background-color: #4CAF50;
@@ -188,6 +188,46 @@ button:hover {
   background-color: rgb(255, 0, 0);
   border-radius: 5px;
   z-index: 5;
+}
+
+/* Nuevo contenedor para los elementos HUD dentro del juego */
+#hud {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10; /* Asegura que esté encima del fondo */
+  pointer-events: none; /* Evita que estorbe con clics */
+}
+
+/* Contador de enemigos (izquierda) */
+#contador {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  pointer-events: none;
+}
+
+/* Barra de vida (derecha) */
+#vida {
+  width: 200px;
+  height: 10px;
+  border: 2px solid #333;
+  background: white;
+  position: relative;
+  pointer-events: none;
+}
+
+#vidaBarra {
+  height: 100%;
+  width: 100%;
+  background: #4caf50;
+  transition: width 0.2s;
 }
 
 
