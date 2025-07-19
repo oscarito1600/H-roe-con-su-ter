@@ -229,6 +229,42 @@ button:hover {
   background: #4caf50;
   transition: width 0.2s;
 }
+ 
+
+#controls-left,
+#controls-right {
+  position: fixed;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row; /* ✅ En fila */
+  gap: 10px;
+  z-index: 1000;
+}
+
+#controls-left {
+  left: 10px; /* Esquina inferior izquierda */
+}
+
+#controls-right {
+  right: 10px; /* Esquina inferior derecha */
+}
+
+#controls-left button,
+#controls-right button {
+  font-size: 7px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
+
+#controls-left button:active,
+#controls-right button:active {
+  background-color: #388e3c;
+  transform: scale(0.97);
+}
 
 
 
