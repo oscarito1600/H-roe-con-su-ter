@@ -258,7 +258,7 @@ const enemigosConfig = [
     { imagen: "calabaza.gif",sonido: "enemySoundDisparador", vida: 3,  altura: 110, ancho: 90,  disparador: true  },
      { imagen: "noob de lava.gif", sonido: "enemySound11", vida: 3, altura: 90, ancho:90 },
          {imagen: "auto2.png", sonido: "enemySound12", vida: 3,altura: 98, ancho: 90,},
-          { imagen: "Pollo goma.gif", sonido: "enemySound13", vida: 3, altura: 90, ancho:90 },
+          { imagen: "Pollo goma.gif", sonido: "enemySound13", vida: 3, altura: 90, ancho:90 }
         
 
 ];
@@ -572,6 +572,7 @@ spawnTimeoutId = null; // 🔄 Resetea el ID del spawn
   iniciarSpawnEnemigos();
   moveLoop(); // ✅ Se ejecutará una sola vez ahora
 }
+
 
 
 
