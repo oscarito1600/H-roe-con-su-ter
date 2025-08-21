@@ -86,9 +86,6 @@ function moveLoop() {
 }
 
 
-
-moveLoop();
-
 function jump() {
   if (jumping || gameOver) return;
   jumping = true;
@@ -254,13 +251,16 @@ const enemigosConfig = [
   { imagen: "enemy4.gif", sonido: "enemySound4", vida: 2, altura: 130, ancho: 130 },
   { imagen: "enemy5.gif", sonido: "enemySound5", vida: 2, altura: 90, ancho:80 },
   { imagen: "enemy6.gif", sonido: "enemySound6", vida: 2, altura: 100, ancho:90 },
-  { imagen: "Javier.gif", sonido: "enemySound7", vida: 4, altura: 100, ancho:100,   saltadorMovil: true    },
+  { imagen: "Javier.gif", sonido: "enemySound7", vida: 2, altura: 100, ancho:100,   saltadorMovil: true    },
    { imagen: "vaquero.gif", sonido: "enemySound8", vida: 2, altura: 90, ancho:99,   saltadorMovil: true  },
   { imagen: "enemy9.gif", sonido: "enemySound9", vida: 3, altura: 105, ancho:90 },
-    {imagen: "barril.gif", sonido: "enemySound10", vida: 3,altura: 100, ancho: 100,  caeDelCielo: true},
+    {imagen: "barril.gif", sonido: "enemySound10", vida: 2,altura: 100, ancho: 100,  caeDelCielo: true},
     { imagen: "calabaza.gif",sonido: "enemySoundDisparador", vida: 3,  altura: 110, ancho: 90,  disparador: true  },
      { imagen: "noob de lava.gif", sonido: "enemySound11", vida: 3, altura: 90, ancho:90 },
-         {imagen: "auto2.png", sonido: "enemySound12", vida: 5,altura: 98, ancho: 90,}
+         {imagen: "auto2.png", sonido: "enemySound12", vida: 3,altura: 98, ancho: 90,},
+          { imagen: "Pollo goma.gif", sonido: "enemySound13", vida: 3, altura: 90, ancho:90 },
+        
+
 ];
 
 
@@ -492,8 +492,11 @@ function iniciarSpawnEnemigos() {
 }
 let intervaloAparicion = 2500; // o el valor base que desees en milisegundos
 
-moveLoop();             // Inicia el movimiento del jugador
-iniciarSpawnEnemigos(); // Inicia la aparición dinámica de enemigos
+window.onload = () => {
+  moveLoop();
+  iniciarSpawnEnemigos();
+};
+
 
 
 
@@ -541,6 +544,7 @@ function reiniciarJuego() {
   clearTimeout(spawnTimeoutId);
   cancelAnimationFrame(animationId);
   loopActivo = false; // ✅ Reinicia la bandera del loop
+spawnTimeoutId = null; // 🔄 Resetea el ID del spawn
 
   gameOver = false;
   health = 10;
@@ -568,4 +572,6 @@ function reiniciarJuego() {
   iniciarSpawnEnemigos();
   moveLoop(); // ✅ Se ejecutará una sola vez ahora
 }
+
+
 
