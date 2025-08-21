@@ -472,7 +472,7 @@ const speed = fromLeft ? velocidadEnemigoBase : -velocidadEnemigoBase;
   }, 30);
 }
 
-
+ moveLoop();
 function iniciarSpawnEnemigos() {
   // 📈 Determina cuántos enemigos aparecen según la dificultad
   let cantidad = 1;
