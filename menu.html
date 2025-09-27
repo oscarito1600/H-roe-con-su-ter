@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Menú del Juego</title>
+  <style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  background-size: cover;
+}
+
+body.menu-activo {
+  background: url('menu.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.boton {
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.boton:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Pantalla de carga */
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url('Temporada 1.png') no-repeat center center;
+  background-size: contain;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+#loader h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: rgb(255, 0, 119);
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.progress-container {
+  width: 300px;
+  height: 25px;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #2c9b00;
+  animation: loadProgress 3s linear forwards;
+}
+
+@keyframes loadProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Botones centrados */
+#creditos, #instrucciones, #jugar {
+  font-size: 22px;
+  padding: 15px 10px;
+  border-radius: 12px;
+  background-color: #ffffffda;
+  color: #000;
+  border: 2px solid #fff;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+  position: relative;
+  margin: 15px auto;
+  display: block;
+  width: 250px;
+  text-align: center;
+}
+
+#creditos:hover {
+  background-color: #ff9b06;
+}
+
+#instrucciones:hover {
+  background-color: #ff9b06;
+}
+
+#jugar:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Contenedor centrado y más abajo */
+#contenedor-botones {
+  position: absolute;
+  top: 55%; /* Ajusta este valor para subir o bajar más */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Quitamos personaje y decoración */
+#imagen-derecha,
+#personaje {
+  display: none;
+}
+
+#menu {
+  display: none;
+}
+
+.ventana {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 3px solid #28a745;
+  border-radius: 15px;
+  padding: 30px;
+  width: 400px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  z-index: 2000;
+  text-align: center;
+}
+
+.ventana h2 {
+  margin-top: 0;
+}
+
+.cerrar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#loader .contenido-loader {
+  margin-top: 280px;
+  text-align: center;
+}
+
+#monedas-display {
+  font-size: 18px;
+  font-weight: bold;
+  color: gold;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+
+/* Ventana de la tienda con scroll */
+#modalTienda {
+  max-height: 80vh;   /* Altura máxima 80% de la pantalla */
+  overflow-y: auto;   /* Scroll vertical si hay mucho contenido */
+  padding-right: 10px; /* Espacio para que no tape contenido */
+}
+
+/* Scroll personalizado */
+#modalTienda::-webkit-scrollbar {
+  width: 10px; /* Ancho del scroll */
+}
+
+#modalTienda::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo del track */
+  border-radius: 10px;
+}
+
+#modalTienda::-webkit-scrollbar-thumb {
+  background: #28a745; /* Color de la barra */
+  border-radius: 10px;
+}
+
+#modalTienda::-webkit-scrollbar-thumb:hover {
+  background: #1e7e34; /* Color al pasar el mouse */
+}
+
+/* Ajuste de imágenes dentro de la tienda */
+#tienda-items img {
+  width: 100%;         /* Ocupa el ancho del contenedor */
+  max-width: 220px;    /* No más ancha que 250px */
+  height: auto;        /* Mantiene proporción */
+  display: block;
+  margin: 0 auto 10px; /* Centradas con espacio abajo */
+  border-radius: 10px;
+}
+
+  </style>
+</head>
+<body class="cargando">
+
+  <!-- Pantalla de carga -->
+  <div id="loader">
+  <div class="contenido-loader">
+    <h1>Cargando juego...</h1>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+</div>
+  <!-- Contenido del menú -->
+<div id="menu">
+  <div id="monedas-display">💰 Monedas: <span id="monedas">0</span></div>
+  <div id="contenedor-botones">
+    <button class="boton" id="jugar" onclick="location.href='index.html'">Jugar</button>
+    <button class="boton" id="tienda" onclick="mostrarVentana('modalTienda')">Tienda</button>
+    <button class="boton" id="instrucciones" onclick="mostrarVentana('modalInstrucciones')">Instrucciones</button>
+    <button class="boton" id="Novedades" onclick="mostrarVentana('modalCreditos')">Novedades</button>
+
+  </div>
+</div>
+
+    
+  </div>
+</div>
+
+  <!-- Ventana Créditos -->
+  <div class="ventana" id="modalCreditos">
+    <button class="cerrar" onclick="cerrarVentanas()">X</button>
+    <h2>Novedades</h2>
+    <p>Desarroyado por Oscar Andres Ramirez Romero</p>
+    <p>:🌍✨ ¡Lanzamiento Global! ✨🌍</p>
+El juego finalmente está disponible para todos. Prepárate para disfrutarl el juego con muchos mas enemigos disponibles.
+ <p>::🛒 ¡La Tienda ha llegado!</p>  
+ Ahora podrás comprar Escenarios de Batalla y personalizar tus combates para hacerlos aún más épicos.
+ <p>Sistema de Monedas</p>
+ Cada enemigo derrotado te dará 1 moneda la cual te ayudara a comprar cosas en la tienda.
+ <p>Nuevo tio de enemigo</p>
+⚰️ Tumba Viviente: un escalofriante enemigo que surge desde el suelo y comienza a caminar con paso amenazante.
+<p>Para mas informacion puedes ir a nuestras redes sociales</p>
+Canal de YOUTUBE Noob con sueter
+</div>
+
+  <!-- Ventana Instrucciones -->
+  <div class="ventana" id="modalInstrucciones">
+    <button class="cerrar" onclick="cerrarVentanas()">X</button>
+    <h2>Instrucciones</h2>
+    <p>Sobrevive eliminando enemigos. Cada enemigo es diferente. ¡Hazlo el mayor tiempo posible!</p>
+  </div>
+
+  <!-- Ventana Tienda -->
+  <div class="ventana" id="modalTienda">
+    <button class="cerrar" onclick="cerrarVentanas()">X</button>
+    <h2>🏪 Tienda de Mundos</h2>
+    <p>Aquí podrás comprar mundos con tus monedas.</p>
+    <div id="tienda-items"></div> <!-- Contenedor para renderizar mundos dinámicamente -->
+  </div>
+
+  <script>
+      // ----- Mostrar y cerrar ventanas -----
+    function mostrarVentana(id) {
+      cerrarVentanas();
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function cerrarVentanas() {
+      document.getElementById('modalCreditos').style.display = 'none';
+      document.getElementById('modalInstrucciones').style.display = 'none';
+      document.getElementById('modalTienda').style.display = 'none';
+    }
+
+    // ----- Monedas y mundos -----
+    let monedas = parseInt(localStorage.getItem("monedas")) || 0;
+    let mundosComprados = JSON.parse(localStorage.getItem("mundosComprados")) || {};
+    let mundoEquipado = localStorage.getItem("mundoEquipado") || "normal";
+
+    document.getElementById("monedas").textContent = monedas;
+
+    const mundos = [
+       { id: "pirata", nombre: "Barco pirata", precio: 0, imagen: "Barco.png" },
+      { id: "Vaquero", nombre: "Pueblo del oeste", precio: 200, imagen: "Mundo 2.png" },
+        { id: "Isla", nombre: "Isla del Dr.T", precio: 400, imagen: "boom beach.png" },
+      { id: "Terror", nombre: "Casa embrujada", precio: 600, imagen: "octubre.png" },
+       { id: "Norte", nombre: "Montaña Nevado", precio: 800, imagen: "Nevado.png" },
+           { id: "Dino", nombre: "Tierra de Dino", precio: 900, imagen: "Dinosaurio.png" },
+               { id: "Guerra", nombre: "Jungla de guerra", precio: 1200, imagen: "Jungla.png" },
+        
+        
+        
+    ];
+
+    // ----- Renderizar tienda -----
+    function renderizarTienda() {
+      const contenedor = document.getElementById("tienda-items");
+      contenedor.innerHTML = "";
+      mundos.forEach(mundo => {
+        const comprado = mundosComprados[mundo.id];
+        const equipado = mundoEquipado === mundo.id;
+        let boton;
+
+        if (!comprado) boton = `<button onclick="comprarMundo('${mundo.id}', ${mundo.precio})">Comprar (${mundo.precio}💰)</button>`;
+        else if (!equipado) boton = `<button onclick="equiparMundo('${mundo.id}')">Equipar</button>`;
+        else boton = `<button disabled>Equipado</button>`;
+
+        contenedor.innerHTML += `
+          <div style="margin-bottom:15px; padding:10px; border:1px solid #ccc; border-radius:10px;">
+            <h3>${mundo.nombre}</h3>
+            <img src="${mundo.imagen}" alt="${mundo.nombre}" style="width:100%; border-radius:10px;">
+            ${boton}
+          </div>
+        `;
+      });
+    }
+
+    // ----- Comprar mundo -----
+    function comprarMundo(id, precio) {
+      if (monedas >= precio) {
+        monedas -= precio;
+        mundosComprados[id] = true;
+        localStorage.setItem("monedas", monedas);
+        localStorage.setItem("mundosComprados", JSON.stringify(mundosComprados));
+        document.getElementById("monedas").textContent = monedas;
+        renderizarTienda();
+        alert("¡Has comprado un nuevo mundo!");
+      } else alert("No tienes suficientes monedas");
+    }
+
+    // ----- Equipar mundo -----
+    function equiparMundo(id) {
+      mundoEquipado = id;
+      localStorage.setItem("mundoEquipado", id);
+      renderizarTienda();
+      alert("¡Has equipado el mundo: " + id + "!");
+    }
+
+    // ----- Inicializar menú -----
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('menu').style.display = 'block';
+        document.body.classList.remove('cargando');
+        document.body.classList.add('menu-activo');
+        document.body.style.overflow = 'auto';
+        renderizarTienda(); // Mostrar tienda al cargar
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>

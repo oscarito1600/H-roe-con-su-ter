@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Blade Skill Hero</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- Juego -->
+<div id="game">
+  <div id="hud">
+    <div id="hud-left">
+      <div id="contador">Enemigos derrotados: <span id="enemigosTexto">0</span></div>
+      <div id="monedasHUD">🪙 Monedas: <span id="monedasTexto">0</span></div>
+    </div>
+    <div id="vida"><div id="vidaBarra"></div></div>
+  </div>
+
+  <div id="player"><img id="sprite" src="idle.png" alt="Jugador"></div>
+  <div id="ground"></div>
+
+  <div id="mensajeFinal" style="display:none; text-align: center;">
+    <h2>¡Has perdido!</h2>
+    <button onclick="reiniciarJuego()">Volver a jugar</button>
+    <button onclick="window.location.href='menu.html'">Volver a menú</button>
+  </div>
+</div>
+
+<!-- Controles -->
+<div id="controls-left">
+  <button id="btnLeft"><img src="Izquierda.png" alt="" width="50"></button>
+  <button id="btnRight"><img src="Derecha.png" alt="" width="50"></button>
+</div>
+
+<div id="controls-right">
+  <button onclick="jump()"><img src="Arriba.png" alt="" width="30"></button>
+  <button onclick="slashAttack()"><img src="ataque.png" alt="" width="50"></button>
+</div>
+
+<!-- Audios -->
+<audio id="bgMusic" src="musica.mp3" loop></audio>
+<audio id="soundJump" src="salto.mp3"></audio>
+<audio id="soundSlash" src="disparo.mp3"></audio>
+<audio id="soundDeath" src="audio_dano.m4a"></audio>
+<audio id="enemySound1" src="capitana.mp3"></audio>
+<audio id="enemySound2" src="enemy2.mp3"></audio>
+<audio id="enemySound3" src="fantasma(MP3_160K).mp3"></audio>
+<audio id="enemySound4" src="yeti_sonido.mp3"></audio>
+<audio id="enemySound5" src=""></audio>
+<audio id="enemySound6" src="enemy6.mp3"></audio>
+<audio id="enemySound7" src="yea.mp3"></audio>
+<audio id="enemySound8" src="enemy8.mp3"></audio>
+<audio id="enemySound9" src="toro.mp3"></audio>
+<audio id="enemySound10" src="enemigo_cielo.mp3"></audio>
+<audio id="enemySound11" src="enemigo_cielo.mp3"></audio>
+<audio id="enemySound12" src="enemigo"></audio>
+<audio id="enemySound13" src="enemigo"></audio>
+<audio id="enemySound14" src="enemigo"></audio>
+<audio id="enemySound15" src="enemigo"></audio>
+<audio id="enemySound16" src="enemigo"></audio>
+
+<!-- Scripts -->
+<script src="juego.js"></script>
+<script>
+  // Función para aplicar el fondo según el mundo equipado
+  function aplicarMundo() {
+    const game = document.getElementById("game");
+    const mundoEquipado = localStorage.getItem("mundoEquipado") || "normal";
+
+    let fondoURL = "Piratas.jpg"; // Fondo por defecto
+    switch(mundoEquipado){
+      case "pirata": fondoURL = "Barco pirata.png"; break;
+      case "Vaquero": fondoURL = "Vaqueros.png"; break;
+      case "Isla": fondoURL = "Fondo de boom beach.png"; break;
+      case "Terror": fondoURL = "Casa embrujada.png"; break;
+      case "Norte": fondoURL = "Nevado.jpg"; break;
+      case "Dino": fondoURL = "Tierradino.png"; break;
+       case "Guerra": fondoURL = "Guerra.png"; break;
+    }
+
+    game.style.backgroundImage = `url('${fondoURL}')`;
+    game.style.backgroundSize = "cover";
+    game.style.backgroundRepeat = "no-repeat";
+    game.style.backgroundPosition = "center";
+  }
+
+  // Ejecutar al cargar la página
+  window.addEventListener("load", aplicarMundo);
+</script>
+
+</body>
+</html>
+
